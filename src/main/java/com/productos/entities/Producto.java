@@ -6,15 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "tb_producto")
-@Getter 
-@Setter 
-@NoArgsConstructor
 public class Producto {
 
     @Id
@@ -31,10 +25,47 @@ public class Producto {
     @Column(name = "pr_precio")
     private Double precio;
 
-    public Producto(String nombre, Integer cantidad, Double precio){
-        this.cantidad=cantidad;
-        this.nombre=nombre;
-        this.precio=precio;
+    // 1. Constructor vacío (Obligatorio para JPA/Hibernate)
+    public Producto() {
     }
 
+    // 2. Constructor con parámetros (Para crear productos nuevos)
+    public Producto(String nombre, Integer cantidad, Double precio) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
+
+    // 3. Getters y Setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
 }
