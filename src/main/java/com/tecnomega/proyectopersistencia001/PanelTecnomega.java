@@ -149,6 +149,7 @@ public class PanelTecnomega extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnRead.setText("Read");
+        btnRead.addActionListener(this::btnReadActionPerformed);
 
         btnUpdate.setText("Update");
 
@@ -324,6 +325,28 @@ public class PanelTecnomega extends javax.swing.JFrame {
     private void CantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CantidadActionPerformed
+
+    private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
+                                        
+        String input = JOptionPane.showInputDialog(this, "Ingrese el ID del producto a buscar:");
+        if (input == null || input.trim().isEmpty()) return;
+
+        int idBuscar = Integer.parseInt(input.trim());
+
+        try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.tecnomega_ProyectoPersistencia001_jar_1.0-SNAPSHOTPU");
+             EntityManager em = emf.createEntityManager()) {
+
+            Producto p = em.find(Producto.class, idBuscar);
+            if (p != null) {
+                ID.setText(String.valueOf(p.getId())); // Llena el ID aunque esté gris
+                Nombre.setText(p.getNombre());
+                Cantidad.setText(String.valueOf(p.getCantidad()));
+                Precio.setText(String.valueOf(p.getPrecio()));
+            } else {
+                JOptionPane.showMessageDialog(this, "No existe un producto con ID: " + idBuscar);
+            }
+        }
+    }//GEN-LAST:event_btnReadActionPerformed
 
     /**
      * @param args the command line arguments
