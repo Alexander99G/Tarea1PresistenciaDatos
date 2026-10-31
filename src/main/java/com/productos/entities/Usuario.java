@@ -28,4 +28,5 @@ public class Usuario {
     // Relación 1 a 1 con Cliente 
     @OneToOne(mappedBy = "usuario")
     private Cliente cliente;
+    
 }

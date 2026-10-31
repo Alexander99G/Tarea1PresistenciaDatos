@@ -15,4 +15,5 @@ public class AuditoriaListener {
     public void antesDeActualizar(Object entidad) {
         System.out.println("[AUDITORÍA - PreUpdate] Actualizando: " + entidad.getClass().getSimpleName());
     }
+    
 }

@@ -46,4 +46,5 @@ public class Factura {
     // Relación 1 a 1..*  una Factura tiene muchos DetalleFactura 
     @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
     private List<DetalleFactura> detalles;
+    
 }
